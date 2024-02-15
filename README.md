@@ -5,7 +5,7 @@
   <a>
     <img src="pics/pfsense-logo-square.png" alt="Logo" width="100" height="100">
   </a>
-  <h3 align="center">How to Configure pfSense and Useful Features</h3>
+  <h3 align="center">How to Configure pfSense Firewall</h3>
 
   <p align="center">
     A Simple Network Project 
@@ -51,19 +51,24 @@
               <li><a href="#switch">Switch</a></li>
               <li><a href="#gateway">Gateway</a></li>  
               <li><a href="#arp">ARP</a></li>    
-
       </ul>
     </li>
     <li>
       <a href="#setting-up">Setting Up</a>
+        <ul>
+             <li> <a href="#ping">Ping</a> </li> 
+             <li> <a href="#ntp">NTP</a> </li> 
+             <li> <a href="#snmp">SNMP</a> </li> 
+             <li> <a href="#captive-portal">Captive Portal</a> </li> 
+             <li> <a href="#snort">Snort</a> </li> 
+             <li> <a href="#backup-and-restore">Backup and Restore</a> </li> 
+        </ul>  
     </li>
     <li><a href="#references">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#license">Acknowledgments</a></li>
   </ol>
 </details>
-
-
 
 
 ## About The Project
@@ -272,10 +277,175 @@ In the purging process, unutilized addresses are deleted; so is any data related
 
 ## Setting Up
 
+After downloading all our virtual machines, we can now start setting up our firewall. The first thing we need to is setting up network settings. On pfSense, we are going to enable first adapter to NAT (this will be our WAN), second adapter to internal network with any name assigned, such as "lan", third one to internal network again but with a different name, such as "lan2". Then on Ubuntu, we will enable first adapter to internal network with "lan", and on Windows, we will connect to internal network "lan2".
+
+<a>
+    <img src="pics/settings.png">
+</a>
+
+After that and assigning IP addresses we should be able to see this screen on pfSense :
+
+<a>
+    <img src="pics/pfsense-ui.png">
+</a>
+
+Now we can reach the web interface of pfSense on our Ubuntu client :
+
+<a>
+    <img src="pics/pfsense-login.png">
+</a>
+
+_On default, your username is "admin" and your password is "pfsense". Once you're in the system you may configure your authentication settings._
+
+We can see our interfaces on web interface :
+
+<a>
+    <img src="pics/interfaces.png">
+</a>
+
+After assigning static IP's through DHCP Leases, your addresses should be seen like this : 
+
+<a>
+    <img src="pics/leases.png">
+</a>
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+### Ping
 
+Ping is a command-line utility, available on virtually any operating system with network connectivity, that acts as a test to see if a networked device is reachable.
 
+The ping command sends a request over the network to a specific device. A successful ping results in a response from the computer that was pinged back to the originating computer.
+
+In our project, we want to ping our Ubuntu client from our Windows Client. In this case, we need to configure firewall rules.
+
+<a>
+    <img src="pics/ping-ruless.png">
+</a>
+
+After that we can successfully ping our Ubuntu :
+
+<a>
+    <img src="pics/pingo.png">
+</a>
+
+The ping command is commonly used to check network connections, test the accessibility of a target, and evaluate network performance. The output of the ping command includes the following information:
+
+Sent Packets: Shows the total number of packets sent to the target by the ping command.
+
+Received Packets: Indicates the number of packets that were successfully received from the target. This is important to determine if there is any loss in communication.
+
+Packet Loss Percentage (%): Represents the percentage of sent packets that were lost. Ideally, there should be no loss, but small losses may be normal in some cases.
+
+Minimum, Maximum, and Average Response Times: Shows the time values between the sent packets and the corresponding responses. These values are the minimum, maximum, and average response times, usually measured in milliseconds.
+
+Ping outputs provide information about the status of the network connection, packet transmission, and the time it takes to reach the target. This information can be used to detect and troubleshoot network issues.
+
+### NTP
+
+The Network Time Protocol (NTP) is an application layer protocol in the TCP/IP protocol suite. It is used to synchronize the clock between the client and the server to provide high-precision time correction. The NTP server receives accurate Coordinated Universal Time (UTC) from an authoritative clock source, such as an atomic clock or GPS. Then, the NTP client requests and receives time from the NTP server.
+
+In our project we will enable NTP from Services tab and configure our timezone. Then we can test it if it is enable or not with this command :
+   ```sh
+   ~$ timedatectl status
+   ```
+<a>
+    <img src="pics/ntp-status.png">
+</a>
+
+_Sample NTP activated output_
+
+### SNMP
+
+Simple Network Management Protocol (SNMP) is an internet standard protocol used to monitor and manage network devices connected over an IP. SNMP is used for communication between routers, switches, firewalls, load balancers, servers, CCTV cameras, and wireless devices.
+
+SNMP collects, organizes, and sends data from various devices for network monitoring assisting with fault identification and isolation. Both the monitored endpoints and the monitoring system rely on SNMP for seamless communication.
+
+In our project, we will enable SNMP through services like this :
+
+<a>
+    <img src="pics/snmpc.png">
+</a>
+
+We can test it with this command :
+
+   ```sh
+   ~$ snmpwalk -v2c -c SNMPTest 10.10.10.1
+   ```
+
+<a>
+    <img src="pics/snmpo.png">
+</a>
+
+_Sample output_
+
+### Captive Portal
+
+The captive portal is an application responsible for controlling and managing the access of users to public and private networks in an automated way. Captive portals are commonly used in open access networks, available in stores, malls, clinics, airports, supermarkets, and corporate networks, for visitor access management. The captive portal allows administrators to provide access to the internet by passing on information that allows user identification, such as name, e-mail, Social Security number, or authentication by using a voucher.
+
+In our project, we will configure captive portal. To do this, we will enable it from services. 
+
+Then create a user and give the necessary privileges to login the internet via captive portal.
+
+<a>
+    <img src="pics/captive-user.png">
+</a>
+
+<a>
+    <img src="pics/privileges.png">
+</a>
+
+Now we can enter the system.
+
+<a>
+    <img src="pics/captive-login.png">
+</a>
+
+<a>
+    <img src="pics/captive-connect.png">
+</a>
+
+We can see the activities through Status -> Captive Portal :
+
+<a>
+    <img src="pics/captive-status.png">
+</a>
+
+### Snort
+
+Snort is the foremost Open Source Intrusion Prevention System (IPS) in the world. Snort IPS uses a series of rules that help define malicious network activity and uses those rules to find packets that match against them and generates alerts for users.
+
+In our project, we will install Snort to our system. Firstly we will go to Snort website and sign up. Then we are heading to "My Account" -> "Oinkcode" to get our subscription code. 
+
+<a href="https://www.snort.org/">Snort WebSite</a>
+
+Then we will head back to our web interface and go to "Package Manager" and install "snort". In this way, we now have "Snort" is ready on "Services" part. Then Services -> Snort -> Global Settings, we will enable snort VRT and type our oinkmaster code :
+
+<a>
+    <img src="pics/snort-settings.png">
+</a>
+
+Now, we are heading to "Updates" and update our rules. When it is successful, we can create our snort interface and enable it :
+
+<a>
+    <img src="pics/snort.png">
+</a>
+
+Finally, we can see the activities on "Alerts" :
+
+<a>
+    <img src="pics/snort-alert.png">
+</a>
+
+### Backup and Restore
+
+Sometimes we want to copy our system settings to a different system or wanted to recover our system to a previous configuration.
+
+On pfSense, we are going to Diagnostics -> Backup & Restore part to backup our specific area or all of it if wanted, or restore backup from previously backuped.
+
+<a>
+    <img src="pics/backup-restore.png">
+</a>
 
 
 ## References
@@ -295,10 +465,14 @@ These are the references I used for research and configure my Firewall.
 * [Router](https://www.cloudflare.com/learning/network-layer/what-is-a-router)
 * [Switch](https://www.lifewire.com/difference-between-router-and-switch-5207135)
 * [Default Getaway](https://www.itpro.com/network-internet/30327/what-is-a-default-gateway)
-* [ARP]()
+* [ARP](https://www.fortinet.com/resources/cyberglossary/what-is-arp)
 * [Snort](https://dogukankurnaz.medium.com/pfsense-snort-kurulumu-af72346b31fb)
-
-
+* [Ping](https://www.paessler.com/it-explained/ping)
+* [NTP](https://info.support.huawei.com/info-finder/encyclopedia/en/NTP.html)
+* [SNMP](https://www.site24x7.com/network/what-is-snmp.html)
+* [Captive Portal](https://ostec.blog/en/perimeter/captive-portal-what-is-it/)
+* [Snort](https://www.snort.org/)
+* [Snort Install Guide](https://dogukankurnaz.medium.com/pfsense-snort-kurulumu-af72346b31fb)
 
 
 
@@ -307,8 +481,6 @@ These are the references I used for research and configure my Firewall.
 Ömer Faruk YILDIRIM - [LinkedIn](https://www.linkedin.com/in/%C3%B6mer-faruk-y%C4%B1ld%C4%B1r%C4%B1m-004292241/) - omeryildirim0640@gmail.com
 
 Project Link: [https://github.com/ylScarred/pfSense-Firewall-Setup/](https://github.com/ylScarred/pfSense-Firewall-Setup/)
-
-
 
 
 
