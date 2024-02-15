@@ -68,7 +68,7 @@
 
 <div align="center">
     <a>
-      <img src="pics/chart.png" alt="Logo" width="450" height="500">
+      <img src="pics/chartt.png" alt="Logo" width="450" height="500">
     </a>
 </div>
 
@@ -181,7 +181,7 @@ TCP operates with the internet protocol (IP) to specify how data is exchanged on
 Establishing a TCP connection requires that both the client and server participate in what is known as a three-way handshake. The process can be broken down as follows:
 
 <a>
-    <img src="pics/tcp3.png">
+    <img src="pics/3tcp.png">
 </a>
 
 A client sends the server a SYN packet—a connection request from its source port to a server’s destination port.
