@@ -1,6 +1,6 @@
 <a name="readme-top"></a>
 
-<br />
+<br/>
 <div align="center">
   <a>
     <img src="pics/pfsense-logo-square.png" alt="Logo" width="100" height="100">
@@ -9,8 +9,6 @@
 
   <p align="center">
     A Simple Network Project 
-    <br />
-    <a href="https://github.com/ylScarred/pfSense-Firewall-Setup"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     ·
@@ -64,6 +62,8 @@
 </details>
 
 
+
+
 ## About The Project
 
 <div align="center">
@@ -76,6 +76,7 @@
 In the rapidly evolving landscape of networking, having a robust and secure network infrastructure is crucial. This project aims to guide you through the process of configuring pfSense, an open-source firewall and routing software, to create a secure and efficient network environment. Whether you are setting up a home network or a small business network, pfSense provides a flexible and powerful solution for managing traffic, enhancing security, and optimizing performance.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 
 
@@ -103,9 +104,13 @@ This project was built using the following components:
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
+
+
 ## Getting Started
 
 This project includes configuration of both Windows and Ubuntu clients' LANs. Firstly we configure our pfSense's network settings for having a WAN, LAN and LAN2. We will assign LAN IP address from pfSense itself to 10.10.10.1 for reaching the web interface from our Ubuntu client, for LAN2 we will assign 20.20.20.1 IP address for Windows client. Then we use firewall's web interface on Ubuntu client to assign a static IP of 10.10.10.10 to our client. Windows client will also get a static IP of 20.20.20.20 assigned.
+
+
  
 ### Installation
 
@@ -131,6 +136,8 @@ This project includes configuration of both Windows and Ubuntu clients' LANs. Fi
    ```
    
 5. Configure the RAM and GPU for the virtual machines.
+   <br />
+   <br />
    
    That's it, we're now ready to start setting up our pfSense Firewall.
 
@@ -139,7 +146,7 @@ This project includes configuration of both Windows and Ubuntu clients' LANs. Fi
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-<!-- Terminology -->
+
 
 ## Terminology
 
@@ -151,65 +158,76 @@ A network consists of two or more computers that are linked in order to share re
 
 ### LAN and WAN
 
+A local area network (LAN) is a collection of devices connected together in one physical location, such as a building, office, or home. A LAN can be small or large, ranging from a home network with one user to an enterprise network with thousands of users and devices in an office or school.
+
+A wide-area network (WAN) is the technology that connects your offices, data centers, cloud applications, and cloud storage together. It is called a wide-area network because it spans beyond a single building or large campus to include multiple locations spread across a specific geographic area, or even the world. For example, businesses with many international branch offices use a WAN to connect office networks together. The world’s largest WAN is the internet because it is a collection of many international networks that connect to each other. This article focuses on enterprise WANs and their uses and benefits.
+
 ### Subnet
 
+A subnet is the division of a larger network into smaller logical networks. It enables better organization and management of IP addresses by grouping devices based on network requirements, security policies, or other factors.
+
+Without proper routing between subnets, devices on one subnet cannot communicate directly with devices on the other subnet.
+
+In our project 10.10.10.0/24 , 20.20.20.0/24 are the subnets of our LANs.
 
 ### DNS
 
-
+DNS, or the Domain Name System, translates human readable domain names to machine readable IP addresses. The Internet’s DNS system works much like a phone book by managing the mapping between names and numbers. DNS servers translate requests for names into IP addresses, controlling which server an end user will reach when they type a domain name into their web browser.
 
 ### HTTP
 
-
 ### Static IP
-
-
 
 ### Broadcasting
 
 ### MAC
 
-
 ### DHCP
-
-
-
 
 ### Router
 
-
-
 ### Switch
-
-
 
 ### Gateway
 
 ### ARP
 
-
 ### TCP Handshake
 
-
-
-
-
-
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+
+
 
 ## Setting Up
 
-
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 
 
 
 ## References
 
-These are some references I used for research and configure my Firewall.
+These are the references I used for research and configure my Firewall.
+
+* [Network](https://fcit.usf.edu/network/chap1/chap1.htm#WideAreaNetwork)
+* [LAN](https://www.cisco.com/c/en/us/products/switches/what-is-a-lan-local-area-network.html)
+* [WAN](https://aws.amazon.com/what-is/wan/)
+* [Subnet]()
+* [DNS]()
+* [HTTP]()
+* [Static IP]()
+* [Broadcasting]()
+* [MAC]()
+* [DHCP]()
+* [Router]()
+* [Switch]()
+* [Getaway]()
+* [ARP]()
+* [TCP]()
 
 
 
@@ -220,6 +238,9 @@ These are some references I used for research and configure my Firewall.
 Ömer Faruk YILDIRIM - [LinkedIn](https://www.linkedin.com/in/%C3%B6mer-faruk-y%C4%B1ld%C4%B1r%C4%B1m-004292241/) - omeryildirim0640@gmail.com
 
 Project Link: [https://github.com/ylScarred/pfSense-Firewall-Setup/](https://github.com/ylScarred/pfSense-Firewall-Setup/)
+
+
+
 
 
 
