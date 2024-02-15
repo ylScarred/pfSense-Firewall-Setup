@@ -162,6 +162,33 @@ A local area network (LAN) is a collection of devices connected together in one 
 
 A wide-area network (WAN) is the technology that connects your offices, data centers, cloud applications, and cloud storage together. It is called a wide-area network because it spans beyond a single building or large campus to include multiple locations spread across a specific geographic area, or even the world. For example, businesses with many international branch offices use a WAN to connect office networks together. The world’s largest WAN is the internet because it is a collection of many international networks that connect to each other. This article focuses on enterprise WANs and their uses and benefits.
 
+### OSI
+
+The Open Systems Interconnection (OSI) model describes seven layers that computer systems use to communicate over a network. It was the first standard model for network communications, adopted by all major computer and telecommunication companies in the early 1980s.
+
+<a>
+    <img src="pics/OSI-7-layers.jpg.webp">
+</a>
+
+### TCP/IP
+
+The modern Internet is not based on OSI, but on the simpler TCP/IP model. The transmission control protocol (TCP) is the internet standard ensuring the successful exchange of data packets between devices over a network. TCP is the underlying communication protocol for a wide variety of applications, including web servers and websites, email applications, FTP and peer-to-peer apps.
+
+TCP operates with the internet protocol (IP) to specify how data is exchanged online. IP is responsible for sending each packet to its destination, while TCP guarantees that bytes are transmitted in the order in which they were sent with no errors or omissions. Together, the two protocols are referred to as TCP/IP.
+
+### TCP Handshake
+
+Establishing a TCP connection requires that both the client and server participate in what is known as a three-way handshake. The process can be broken down as follows:
+
+<a>
+    <img src="pics/tcp3.png">
+</a>
+
+A client sends the server a SYN packet—a connection request from its source port to a server’s destination port.
+The server responds with a SYN/ACK packet, acknowledging the receipt of the connection request.
+The client receives the SYN/ACK packet and responds with an ACK packet of its own.
+After the connection is established, TCP works by breaking down transmitted data into segments, each of which is packaged into a datagram and sent to its destination.
+
 ### Subnet
 
 A subnet is the division of a larger network into smaller logical networks. It enables better organization and management of IP addresses by grouping devices based on network requirements, security policies, or other factors.
@@ -176,9 +203,7 @@ DNS, or the Domain Name System, translates human readable domain names to machin
 
 ### HTTP
 
-### Static IP
-
-### Broadcasting
+The Hypertext Transfer Protocol (HTTP) is the foundation of the World Wide Web, and is used to load webpages using hypertext links. HTTP is an application layer protocol designed to transfer information between networked devices and runs on top of other layers of the network protocol stack. A typical flow over HTTP involves a client machine making a request to a server, which then sends a response message.
 
 ### MAC
 
@@ -192,7 +217,6 @@ DNS, or the Domain Name System, translates human readable domain names to machin
 
 ### ARP
 
-### TCP Handshake
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -216,11 +240,11 @@ These are the references I used for research and configure my Firewall.
 * [Network](https://fcit.usf.edu/network/chap1/chap1.htm#WideAreaNetwork)
 * [LAN](https://www.cisco.com/c/en/us/products/switches/what-is-a-lan-local-area-network.html)
 * [WAN](https://aws.amazon.com/what-is/wan/)
-* [Subnet]()
-* [DNS]()
-* [HTTP]()
-* [Static IP]()
-* [Broadcasting]()
+* [OSI](https://www.imperva.com/learn/application-security/osi-model/)
+* [TCP/IP]()
+* [Subnet](https://www.techtarget.com/searchnetworking/definition/subnet)
+* [DNS](https://aws.amazon.com/route53/what-is-dns/)
+* [HTTP](https://www.cloudflare.com/learning/ddos/glossary/hypertext-transfer-protocol-http/)
 * [MAC]()
 * [DHCP]()
 * [Router]()
